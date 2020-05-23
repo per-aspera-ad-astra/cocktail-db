@@ -5,19 +5,20 @@ export default class Filter extends React.Component  {
 
   state = {
     isOpen: false,
-    loading: true
+    // loading: true,
+    categories: []
     // selectedCategories: this.props.categories
   }
 
-  // componentDidMount() {
-  //   console.log(this.state.selectedCategories);
-  // }
+  componentDidMount() {
+    this.setState({
+      categories: this.props.categories
+    })
+  }
 
-  // submitFilters = () => {
-  //   console.log("Selected Categories", this.state.selectedCategories);
-
-  //   this.props.updateData(this.state.selectedCategories);
-  // }
+  submitFilters = () => {
+    this.props.handleChangeFilterElement(this.state.categories);
+  }
 
   toggleFilter = () => {
     this.setState({
@@ -25,26 +26,22 @@ export default class Filter extends React.Component  {
     })
   }
 
-  onChange = (value) => {
-    // const selectedValue = value.replace(/ /g, '_');
-    // const selectedCategories = this.props.selectedCategories;
+  handleChangeFilterElement = (event) => {
+    const categories = this.state.categories;
+    categories.forEach(item => {
+      if (item.value === event.target.value)
+        item.isChecked = !item.isChecked
+    });
 
-    // if(selectedCategories.indexOf(selectedValue) !== -1) {
-    //   selectedCategories.splice(selectedCategories.indexOf(selectedValue), 1);
-    // } else {
-    //   selectedCategories.push(selectedValue);
-    // }
-    // console.log('changed', this.props.selectedCategories);
-
-    // this.setState({
-    //   selectedCategories
-    // })
+    this.setState({
+      categories
+    })
+    
+    return categories;  
   }
 
-  
-
   render() {
-    const {categories, handleChangeFilterElement} = this.props;
+    // const {categories, handleChangeFilterElement} = this.props;
 
     const filterClasses = ['filter'];
 
@@ -64,7 +61,7 @@ export default class Filter extends React.Component  {
           </button>
           <div className="filter-list-wrapper">
             <ul className="filter-list">
-            {categories.map((item) => {
+            {this.state.categories.map((item) => {
               return (
                 <li
                   key={item.id}
@@ -73,7 +70,7 @@ export default class Filter extends React.Component  {
                   <FilterItem 
                     text={item.value}
                     isChecked={item.isChecked}
-                    handleChangeFilterElement={handleChangeFilterElement}
+                    handleChangeFilterElement={this.handleChangeFilterElement}
                   />
                 </li>
               )

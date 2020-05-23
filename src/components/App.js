@@ -118,16 +118,20 @@ export default class App extends React.Component {
     // });
   }
 
-  handleChangeFilterElement = (event) => {
-    const categories = this.state.categories;
-    categories.forEach(item => {
-      if (item.value === event.target.value)
-        item.isChecked = !item.isChecked
-    })
+  handleChangeFilterElement = (value) => {
+    // const categories = this.state.categories;
+    // categories.forEach(item => {
+    //   if (item.value === event.target.value)
+    //     item.isChecked = !item.isChecked
+    // })
+    // this.setState({
+    //   categories
+    // })
+    // console.log(event.target.value);
+    const categories = value;
     this.setState({
       categories
     })
-    console.log(event.target.value);
   }
 
   render() {

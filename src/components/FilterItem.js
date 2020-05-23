@@ -7,6 +7,8 @@ const FilterItem = props => {
     labelClasses.push('checked');
   }
 
+  console.log(props.text, props.isChecked)
+
   return(
     <label 
       className={labelClasses.join(' ')}
@@ -15,7 +17,7 @@ const FilterItem = props => {
       <input 
         type="checkbox"
         id={props.text}
-        defaultChecked={props.isChecked}
+        checked={props.isChecked}
         onChange={props.handleChangeFilterElement}
         value={props.text}
         />
