@@ -10,60 +10,32 @@ function transformCategoryName(value) {
 
 export default class App extends React.Component {
 
-  constructor() {
-    super();
-
-    this.state = {
-      categories: [],
-      isLoading: true,
-      isScrolling: false
-    }
-
-    this.apiBase = 'https://www.thecocktaildb.com/api/json/v1/1/';
-    this.apiCategoryList = 'list.php?c=list';
-    this.apiFilterCategory = 'filter.php?c=';
+  state = {
+    categories: [],
+    isLoading: true,
+    isScrolling: false
   }
 
   async componentDidMount() {
-    // console.log('did mount');
     await this.getData();
     window.addEventListener('scroll', this.handleScroll);
     this.setState({
       isLoading: false
     })
-    // this.drawCategories();
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    // console.log('did update');
-    // if(prevState.drinks !== this.state.drinks) {
-    //   this.updateData();
-    //   console.log(prevState.drinks, this.state.drinks);
-    //   console.log(this.state);
-    // }
   }
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
   }
 
-  handleScroll = () => {
-    if(window.scrollY >= 60) {
-      this.setState({
-        isScrolling: true
-      })
-    } else {
-      this.setState({
-        isScrolling: false
-      })
-    }
-  }
-
   getData = async () => {
+    const apiBase = 'https://www.thecocktaildb.com/api/json/v1/1/',
+          apiCategoryList = 'list.php?c=list',
+          apiFilterCategory = 'filter.php?c=';
 
     const categoriesList = [];
 
-    await fetch(`${this.apiBase}${this.apiCategoryList}`)
+    await fetch(`${apiBase}${apiCategoryList}`)
       .then(res => res.json())
       .then(data => {
         data.drinks.forEach(item => {
@@ -84,7 +56,7 @@ export default class App extends React.Component {
 
     const allURI = categoriesList.map(item => {
       const category = transformCategoryName(item);
-      return `${this.apiBase}${this.apiFilterCategory}${category}`
+      return `${apiBase}${apiFilterCategory}${category}`
     })
 
     // Get all drinks
@@ -105,39 +77,28 @@ export default class App extends React.Component {
     this.setState({
       categories
     });
-
-    console.log(categories);
-  }
-
-
-  updateData = async (updateCategories) => {
-    console.log(updateCategories);
-    
-    // this.setState({
-    //   selectedCategories: updateCategories
-    // });
   }
 
   handleChangeFilterElement = (value) => {
-    // const categories = this.state.categories;
-    // categories.forEach(item => {
-    //   if (item.value === event.target.value)
-    //     item.isChecked = !item.isChecked
-    // })
-    // this.setState({
-    //   categories
-    // })
-    // console.log(event.target.value);
     const categories = value;
     this.setState({
       categories
     })
   }
 
-  render() {
-    console.log(this.state);
-    console.log('render');
+  handleScroll = () => {
+    if(window.scrollY >= 60) {
+      this.setState({
+        isScrolling: true
+      })
+    } else {
+      this.setState({
+        isScrolling: false
+      })
+    }
+  }
 
+  render() {
     const wrapperStyles = ['wrapper'];
 
     if (this.state.isScrolling) {
@@ -153,7 +114,6 @@ export default class App extends React.Component {
           : <main className="main">
               <Filter 
                 categories={this.state.categories}
-                updateData={this.updateData}
                 handleChangeFilterElement={this.handleChangeFilterElement}
               />
               <div className="content">

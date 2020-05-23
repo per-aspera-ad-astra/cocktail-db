@@ -5,9 +5,7 @@ export default class Filter extends React.Component  {
 
   state = {
     isOpen: false,
-    // loading: true,
     categories: []
-    // selectedCategories: this.props.categories
   }
 
   componentDidMount() {
@@ -41,8 +39,6 @@ export default class Filter extends React.Component  {
   }
 
   render() {
-    // const {categories, handleChangeFilterElement} = this.props;
-
     const filterClasses = ['filter'];
 
     if(this.state.isOpen) {

@@ -7,8 +7,6 @@ const FilterItem = props => {
     labelClasses.push('checked');
   }
 
-  console.log(props.text, props.isChecked)
-
   return(
     <label 
       className={labelClasses.join(' ')}
