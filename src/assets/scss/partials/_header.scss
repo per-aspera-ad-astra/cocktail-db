@@ -15,16 +15,17 @@
   position: relative;
   max-width: 80%;
 
-  &::after {
+  &-cocktail {
+    display: none;
+
     @include screen(md) {
-      content: '';
+      display: block;
       position: absolute;
       top: 50%;
       left: calc(100% + 4rem);
       transform: translateY(-50%);
       width: 2.8rem;
       height: 5rem;
-      background: url(../../images/logo-coctail.svg) center/cover no-repeat;
     }
   }
 }

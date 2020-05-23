@@ -1,17 +1,22 @@
 import React from 'react';
+import iconCheckbox from '../assets/images/icon-checkbox.svg';
+import iconCheckboxChecked from '../assets/images/icon-checkbox-checked.svg';
 
 const FilterItem = props => {
-  const labelClasses = ['filter-list__label'];
-
-  if (props.isChecked) {
-    labelClasses.push('checked');
-  }
-
   return(
     <label 
-      className={labelClasses.join(' ')}
+      className="filter-list__label"
       htmlFor={props.text}
     >
+      <img 
+        className="filter-list__label-icon"
+        src={
+          props.isChecked
+            ? iconCheckboxChecked
+            : iconCheckbox
+        }
+        alt="icon"
+      />
       <input 
         type="checkbox"
         id={props.text}

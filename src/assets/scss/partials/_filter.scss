@@ -78,27 +78,18 @@
       position: relative;
       padding-left: 3rem;
 
-      &.checked {
-        &::before {
-          background-image: url(../../images/icon-checkbox-checked.svg);
-        }
-      }
-
-      &::before {
-        content: '';
+      &-icon {
         position: absolute;
         left: 0;
         top: 50%;
         transform: translateY(-50%);
         width: 2rem;
         height: 2rem;
-        background: url(../../images/icon-checkbox.svg) center/cover no-repeat;
       }
     }
 
     input {
-      position: absolute;
-      opacity: 0;
+      display: none;
     }
   }
 }
