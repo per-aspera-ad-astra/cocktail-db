@@ -1,0 +1,104 @@
+.filter {
+  width: 22rem;
+  position: absolute;
+  height: 100%;
+  right: 100%;
+  background: #fff;
+  transition: 0.3s;
+
+  @include screen(md) {
+    width: 25rem;
+  }
+
+  @include screen(xl) {
+    position: static;
+    flex: 1 0 auto;
+    background: transparent;
+    width: 25rem;
+  }
+
+  &.open {
+    right: calc(100% - 22rem);
+    box-shadow: 1px 0 2px $grey-shadow;
+
+    @include screen(md) {
+      right: calc(100% - 25rem);
+    }
+
+    @include screen(xl) {
+      box-shadow: none;
+    }
+  }
+
+  &-inner {
+    width: 22rem;
+    padding: 2.5rem 2rem;
+
+    @include screen(md) {
+      width: 25rem;
+      padding: 3rem 3.5rem;
+    }
+  }
+
+  &-toggle {
+    position: absolute;
+    top: 1rem;
+    left: 100%;
+    padding: .5rem 1rem;
+    background: #fff;
+    color: $main-color;
+    border-top-right-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+    border: 1px solid $border-color;
+    white-space: nowrap;
+    outline: 0;
+
+    @include screen(xl) {
+      display: none;
+    }
+  }
+
+  &-list-wrapper {
+    overflow-y: auto;
+    max-height: calc(100vh - 12rem);
+  }
+
+  &-list {
+    margin-bottom: 2rem;
+    line-height: 1.25;
+
+    &__item {
+
+      &:not(:last-child) {
+        margin-bottom: 2rem;
+      }
+    }
+
+    &__label {
+      position: relative;
+      padding-left: 3rem;
+
+      &.checked {
+        &::before {
+          background-image: url(../../images/icon-checkbox-checked.svg);
+        }
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 2rem;
+        height: 2rem;
+        background: url(../../images/icon-checkbox.svg) center/cover no-repeat;
+      }
+    }
+
+    input {
+      position: absolute;
+      opacity: 0;
+    }
+  }
+}
