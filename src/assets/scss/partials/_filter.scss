@@ -1,0 +1,96 @@
+.filter {
+  background: #fff;
+  height: 100%;
+  position: absolute;
+  right: 100%;
+  transition: 0.3s;
+  width: 22rem;
+
+  @include screen(md) {
+    width: 25rem;
+  }
+
+  @include screen(xl) {
+    background: transparent;
+    flex: 1 0 auto;
+    position: static;
+    width: 25rem;
+  }
+
+  &.open {
+    box-shadow: 1px 0 2px $grey-shadow;
+    right: calc(100% - 22rem);
+
+    @include screen(md) {
+      right: calc(100% - 25rem);
+    }
+
+    @include screen(xl) {
+      box-shadow: none;
+    }
+  }
+
+  &-inner {
+    padding: 2.5rem 2rem;
+    position: fixed;
+    top: 6rem;
+    width: 22rem;
+
+    @include screen(md) {
+      padding: 3rem 3.5rem;
+      width: 25rem;
+    }
+  }
+
+  &-toggle {
+    background: #fff;
+    border: 1px solid $border-color;
+    border-top-right-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+    color: $main-color;
+    left: 100%;
+    outline: 0;
+    padding: .5rem 1rem;
+    position: absolute;
+    top: 1rem;
+    white-space: nowrap;
+
+    @include screen(xl) {
+      display: none;
+    }
+  }
+
+  &-list-wrapper {
+    max-height: calc(100vh - 12rem);
+    overflow-y: auto;
+  }
+
+  &-list {
+    line-height: 1.25;
+    margin-bottom: 2rem;
+
+    &__item {
+      &:not(:last-child) {
+        margin-bottom: 2rem;
+      }
+    }
+
+    &__label {
+      padding-left: 3rem;
+      position: relative;
+
+      &-icon {
+        height: 2rem;
+        left: 0;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 2rem;
+      }
+    }
+
+    input {
+      display: none;
+    }
+  }
+}

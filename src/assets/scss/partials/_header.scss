@@ -1,0 +1,32 @@
+.header {
+  align-items: center;
+  background: #fff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  height: 6rem;
+  justify-content: center;
+  padding: 1.5rem 1.5rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.logo {
+  max-width: 80%;
+  position: relative;
+
+  &-cocktail {
+    display: none;
+
+    @include screen(md) {
+      display: block;
+      height: 5rem;
+      left: calc(100% + 4rem);
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 2.8rem;
+    }
+  }
+}
